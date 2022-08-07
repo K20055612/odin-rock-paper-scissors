@@ -1,3 +1,50 @@
+function compare(choice1, choice2) {
+    switch(choice1.toLowerCase()) {
+        case "rock":
+            switch(choice2.toLowerCase()) {
+                case "paper":
+                    return(-1);
+                    break;
+                case "scissors":
+                    return(1);
+                    break;
+                default:
+                    return(0);
+                    break;
+            }
+            break;
+        case "paper":
+            switch(choice2.toLowerCase()) {
+                case "scissors":
+                    return(-1);
+                    break;
+                case "rock":
+                    return(1);
+                    break;
+                default:
+                    return(0);
+                    break;
+            }
+            break;
+        case "scissors":
+            switch(choice2.toLowerCase()) {
+                case "rock":
+                    return(-1);
+                    break;
+                case "paper":
+                    return(1);
+                    break;
+                default:
+                    return(0);
+                    break;
+            }
+            break;
+        default:
+            return(NaN);
+            break;
+      }
+}
+
 function getComputerChoice() {
     const choice = ["rock", "paper", "scissors"];
     return choice[Math.floor(Math.random()*choice.length)]
