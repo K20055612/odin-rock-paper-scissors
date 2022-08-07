@@ -46,61 +46,36 @@ function compare(choice1, choice2) {
 }
 
 function getComputerChoice() {
-    const choice = ["rock", "paper", "scissors"];
+    const choice = ["Rock", "Paper", "Scissors"];
     return choice[Math.floor(Math.random()*choice.length)]
 }
 
 function playRound(playerSelection, computerSelection) {
-    switch(playerSelection.toLowerCase()) {
-        case "rock":
-            switch(computerSelection.toLowerCase()) {
-                case "paper":
-                    return("You lose! Paper beats Rock");
-                    break;
-                case "scissors":
-                    return("You win! Rock beats Scissors");
-                    break;
-                default:
-                    return("Tie! You both selected Rock!");
-                    break;
-            }
-            break;
-        case "paper":
-            switch(computerSelection.toLowerCase()) {
-                case "scissors":
-                    return("You lose! Scissors beats Paper");
-                    break;
-                case "rock":
-                    return("You win! Paper beats Rock");
-                    break;
-                default:
-                    return("Tie! You both selected Paper!");
-                    break;
-            }
-            break;
-        case "scissors":
-            switch(computerSelection.toLowerCase()) {
-                case "rock":
-                    return("You lose! Rock beats Scissors");
-                    break;
-                case "paper":
-                    return("You win! Scissors beats Paper");
-                    break;
-                default:
-                    return("Tie! You both selected Scissors!");
-                    break;
-            }
-            break;
-        default:
-            break;
-      }
+    return compare(playerSelection, computerSelection);
 }
 
 function game() {
+    var score = 0;
     for(let i = 0; i < 5; i++) {
-        playerSelection = prompt("Rock, paper, scissors?");
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
+        var result = 0;
+        while(result === 0) {
+            var playerSelection = prompt("Rock, paper, scissors?", " ");
+            var computerSelection = getComputerChoice();
+            result = playRound(playerSelection, computerSelection);
+            if(result === 0) {
+                console.log(`Tie! You both selected ${computerSelection.toLowerCase()}`);
+            } else if(result === 1) {
+                console.log(`You win! ${playerSelection.toLowerCase()} beats ${computerSelection.toLowerCase()}`);
+            } else {
+                console.log(`You lose! ${computerSelection.toLowerCase()} beats ${playerSelection.toLowerCase()}`);
+            }
+        }
+        score += result;
+    }
+    if(score > 0) {
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
     }
 }
 
