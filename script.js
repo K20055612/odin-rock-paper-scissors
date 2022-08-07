@@ -48,3 +48,12 @@ function playRound(playerSelection, computerSelection) {
             break;
       }
 }
+
+function game() {
+    for(let i = 0; i < 5; i++) {
+        playerSelection = prompt("Rock, paper, scissors?")
+        console.log(playerSelection)
+    }
+}
+
+game()
