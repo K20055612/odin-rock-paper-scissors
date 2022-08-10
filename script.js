@@ -58,7 +58,7 @@ function playRound(playerSelection, computerSelection) {
     return compare(playerSelection, computerSelection);
 }
 
-
+const scoreLabel = document.querySelector(".score-label");
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
@@ -79,6 +79,8 @@ function play(e) {
         console.log(`You lose! ${computerSelection.toLowerCase()} beats ${playerSelection.toLowerCase()}`);
     }
     score += result;
+
+    scoreLabel.textContent = "SCORE: " + score;
 
     if(result !== 0) {
         round++;
