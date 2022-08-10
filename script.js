@@ -2,6 +2,18 @@ var score = 0;
 var round = 0;
 const ROUND_COUNT = 5;
 
+const scoreLabel = document.querySelector(".score-label");
+const buttons = document.querySelectorAll(".player-choice");
+const body = document.querySelector("body");
+const winnerLabel = document.createElement('div');
+const resetButton = document.createElement('button');
+resetButton.textContent = "Play again!";
+resetButton.addEventListener('click', (e) => resetGame());
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => play(e));
+  });
+
 function compare(choice1, choice2) {
     switch(choice1.toLowerCase()) {
         case "rock":
@@ -58,14 +70,6 @@ function playRound(playerSelection, computerSelection) {
     return compare(playerSelection, computerSelection);
 }
 
-const scoreLabel = document.querySelector(".score-label");
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-  button.addEventListener('click', (e) => play(e));
-});
-
-
 function play(e) {
     var result = 0;
     var playerSelection = e.target.id;
@@ -80,17 +84,33 @@ function play(e) {
     }
     score += result;
 
-    scoreLabel.textContent = "SCORE: " + score;
+    updateScore();
 
     if(result !== 0) {
         round++;
     }
 
     if(round === 5) {  
-        if(score > 0) {
-            console.log("You win!");
-        } else {
-            console.log("You lose!");
-        }
+        endGame(score);
     }
+}
+
+function endGame(score) {
+    buttons.forEach(button => button.disabled = true);
+    winnerLabel.textContent = score > 0 ? "You win!" : "You lose!";
+    body.appendChild(winnerLabel);
+    body.appendChild(resetButton);
+}
+
+function resetGame() {
+    body.removeChild(winnerLabel);
+    body.removeChild(resetButton);
+    buttons.forEach(button => button.disabled = false);
+    score = 0;
+    updateScore();
+    round = 0;
+}
+
+function updateScore() {
+    scoreLabel.textContent = "SCORE: " + score;
 }
