@@ -1,3 +1,7 @@
+var score = 0;
+var round = 0;
+const ROUND_COUNT = 5;
+
 function compare(choice1, choice2) {
     switch(choice1.toLowerCase()) {
         case "rock":
@@ -58,38 +62,33 @@ function playRound(playerSelection, computerSelection) {
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    var playerSelection = button.id;
-    var computerSelection = getComputerChoice();
-    result = playRound(playerSelection, computerSelection);
-    console.log(result);
-  });
+  button.addEventListener('click', (e) => play(e));
 });
 
 
-// function game() {
-//     var score = 0;
-//     for(let i = 0; i < 5; i++) {
-//         var result = 0;
-//         while(result === 0) {
-//             var playerSelection = prompt("Rock, paper, scissors?", " ");
-//             var computerSelection = getComputerChoice();
-//             result = playRound(playerSelection, computerSelection);
-//             if(result === 0) {
-//                 console.log(`Tie! You both selected ${computerSelection.toLowerCase()}`);
-//             } else if(result === 1) {
-//                 console.log(`You win! ${playerSelection.toLowerCase()} beats ${computerSelection.toLowerCase()}`);
-//             } else {
-//                 console.log(`You lose! ${computerSelection.toLowerCase()} beats ${playerSelection.toLowerCase()}`);
-//             }
-//         }
-//         score += result;
-//     }
-//     if(score > 0) {
-//         console.log("You win!");
-//     } else {
-//         console.log("You lose!");
-//     }
-// }
+function play(e) {
+    var result = 0;
+    var playerSelection = e.target.id;
+    var computerSelection = getComputerChoice();
+    result = playRound(playerSelection, computerSelection);
+    if(result === 0) {
+        console.log(`Tie! You both selected ${computerSelection.toLowerCase()}`);
+    } else if(result === 1) {
+        console.log(`You win! ${playerSelection.toLowerCase()} beats ${computerSelection.toLowerCase()}`);
+    } else {
+        console.log(`You lose! ${computerSelection.toLowerCase()} beats ${playerSelection.toLowerCase()}`);
+    }
+    score += result;
 
-// game()
+    if(result !== 0) {
+        round++;
+    }
+
+    if(round === 5) {  
+        if(score > 0) {
+            console.log("You win!");
+        } else {
+            console.log("You lose!");
+        }
+    }
+}
