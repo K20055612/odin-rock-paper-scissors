@@ -4,11 +4,13 @@ const ROUND_COUNT = 5;
 
 const scoreLabel = document.querySelector(".score-label");
 const buttons = document.querySelectorAll(".player-choice");
+const panel = document.querySelector(".panel");
 const body = document.querySelector("body");
 const winnerLabel = document.createElement('div');
 const resetButton = document.createElement('button');
 resetButton.textContent = "Play again!";
 resetButton.addEventListener('click', (e) => resetGame());
+resetButton.classList.add("reset-button");
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => play(e));
@@ -98,13 +100,13 @@ function play(e) {
 function endGame(score) {
     buttons.forEach(button => button.disabled = true);
     winnerLabel.textContent = score > 0 ? "You win!" : "You lose!";
-    body.appendChild(winnerLabel);
-    body.appendChild(resetButton);
+    panel.appendChild(winnerLabel);
+    panel.appendChild(resetButton);
 }
 
 function resetGame() {
-    body.removeChild(winnerLabel);
-    body.removeChild(resetButton);
+    panel.removeChild(winnerLabel);
+    panel.removeChild(resetButton);
     buttons.forEach(button => button.disabled = false);
     score = 0;
     updateScore();

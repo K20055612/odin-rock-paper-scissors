@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
 body {
     background-color: #3A3B3C;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .player-choice {
@@ -21,4 +30,27 @@ body {
 
 .player-choice:active {
     background-color: #333435;
+}
+
+.score-label {
+    color: #FFC83D;
+    font-size: 50px;
+    margin-bottom: auto;
+}
+
+.reset-button {
+    width: 150px;
+    height: 80px;
+}
+
+.header {
+    font-size: 60px;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    height: 300px;
 }
