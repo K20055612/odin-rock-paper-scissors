@@ -1,0 +1,24 @@
+body {
+    background-color: #3A3B3C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.player-choice {
+    background-color: transparent;
+    border: transparent;
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    font-size: 100px;
+}
+
+.player-choice:hover {
+    background-color: #5f6163;
+}
+
+.player-choice:active {
+    background-color: #333435;
+}
